@@ -1,0 +1,14 @@
+address: http://localhost/crex/
+lang: cs-cZ
+def_controller_path: app\Crex\Controller
+def_service_path: 
+def_factory_path: 
+
+db_server: localhost
+db_username: root
+db_password: 
+db_database: crex
+
+default_title: 'Default site title'
+default_description: 'This is default description of site. Use Controller->setParameter($name, $value).'
+default_keywords: 'this, is, default, keywords, value'

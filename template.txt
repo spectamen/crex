@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="<?php echo(LANG); ?>">
+    <head>
+        <title><?php echo($this->getParameters()["title"]); ?></title>
+        <meta name="description" content="<?php echo($this->getParameters()["description"]); ?>">
+        <meta name="keywords" content="<?php echo($this->getParameters()["keywords"]); ?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo(ADDRESS); ?>css/styles.css">
+    </head>
+    <body>
+    <?php echo(ADDRESS); ?>
+<?php echo($this->getParameters()["form"]); ?>    
+    </body>
+</html>
