@@ -1,13 +1,12 @@
 <?php
 
-namespace crex\Web\Form;
+namespace Crex\Web\Form;
 
-use crex\Factory\Factory;
 
-class FormFactory extends Factory  {
+class FormFactory extends \Crex\Factory\Factory {
     
     public function create() {
-        return new Form($this->container);
-    }
+        return new Form($this->container, array('name' => 'form'));
+    }   
     
 }

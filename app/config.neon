@@ -1,4 +1,4 @@
-address: http://localhost/crex/
+address: http://localhost/crex-git/crex/
 lang: cs-cZ
 def_controller_path: app\Crex\Controller
 def_service_path: 

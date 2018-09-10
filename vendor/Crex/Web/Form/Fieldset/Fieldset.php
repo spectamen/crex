@@ -6,18 +6,11 @@ use Crex\Web\Form\AFormBlock;
 
 class Fieldset extends AFormBlock {
     
-    public function __toString() {
-        $string = "\n<div class=\"crex-fieldset\">" . 
-                  "\n<fieldset>";
-        if(!empty($this->label)) {
-            $string = $string .  "\n<legend>" . $this->name . "</legend>\n";
-        }
-        foreach($this->components as $component) {
-            $string = $string . $component;
-        }
-        $string = $string . "</fieldset>"
-                . "\n</div>\n";
-        return $string;  
+    public function setLegend($legend) {
+        $contentItem = $this->returnNewContentItem('legend');
+        $contentItem->addContent($legend);
+        $this->addContent($contentItem, 'legend');
+        return $this;
     }
     
 }

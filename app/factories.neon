@@ -7,12 +7,11 @@ DatabaseRowFactory: Crex\Database\Table\Row\RowFactory
 DatabaseColumnFactory: Crex\Database\Table\Column\ColumnFactory
 DatabaseValueFactory: Crex\Database\Table\Row\Value\ValueFactory
 
+#Web
+WebItemFactory: Crex\Web\ItemFactory
+
 #Form
 FormFactory: Crex\Web\Form\FormFactory
 FormFieldsetFactory: Crex\Web\Form\Fieldset\FieldsetFactory
-FormTextFactory: Crex\Web\Form\Input\Text\TextFactory
-FormPasswordFactory: Crex\Web\Form\Input\Password\PasswordFactory
-FormCheckboxFactory: Crex\Web\Form\Input\Checkbox\CheckboxFactory
-FormRadioFactory: Crex\Web\Form\Input\Radio\RadioFactory
-FormHiddenFactory: Crex\Web\Form\Input\Hidden\HiddenFactory
-FormSelectFactory: Crex\Web\Form\Input\Select\SelectFactory
+FormInputFactory: Crex\Web\Form\Input\InputFactory
+FormSelectFactory: Crex\Web\Form\Select\SelectFactory
