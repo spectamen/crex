@@ -14,8 +14,7 @@ class DefaultController extends Controller {
     private function createForm() {
         $form = $this->container->getFactory('FormFactory')->create()
                 ->setMethod('get')
-                ->setAction('index.php')
-                ->setTarget('_blank');
+                ->setAction('{#ADDRESS}');
         $form->add('fieldset', 'FA')
                 ->setLegend('Fieldset A');
         $form->getContentItem('FA')

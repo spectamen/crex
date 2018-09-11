@@ -121,7 +121,7 @@ abstract class HTML {
         if(!in_array(strtolower($object->name), self::$nonDivedTags)) {
             $string = $string . '</div>' . "\n";
         }        
-        
+        $string = Porzana::replaceShortcuts($string, NULL, 1);
         return Porzana::returnSortedHtml($string);
     }
 

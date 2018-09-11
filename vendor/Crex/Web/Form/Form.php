@@ -27,4 +27,19 @@ class Form extends AFormBlock {
         return $this;
     }
     
+    public function loadValues($method = NULL) {
+        (!isset($method)) ? $method = $this->attributes['method'] : $method = $method;
+        switch($method) {
+            case('GET'):
+                $this->loadValuesGET();
+                break;
+            case('POST'):
+                $this->loadVALUESPOST();
+                break;
+            default:
+                break;
+        }
+        return $this;
+    }
+    
 }

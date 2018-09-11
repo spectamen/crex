@@ -17,6 +17,16 @@ class Select extends AFormInput {
         return $this;
     }
     
+    public function setValue($value) {
+        foreach($this->content as $content) {
+            if($content->value == $value) {
+                $content->addAttribute('selected');
+            } else {
+                $content->removeAttribute('selected');
+            }
+        }
+    }
+    
     public function removeOption($value) {
         unset($this->content['option_' . $value]);
         return $this;

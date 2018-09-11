@@ -31,6 +31,13 @@ class Item extends CrexObject {
         return $this;
     }
     
+    public function removeAttribute($name) {
+        if(isset($this->attributes[$name])) {
+            unset($this->attributes[$name]);
+        }
+        return $this;
+    }
+    
     public function addContent($content, $name = NULL, $pre = 0, $shifted = 0) {
         (!isset($name)) ? $name = GenHelper::RandomString(8): $name = $name;
         $newArray = array('content' => $content, 'pre' => $pre);

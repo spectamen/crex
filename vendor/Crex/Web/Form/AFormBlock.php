@@ -6,6 +6,8 @@ use Crex\Web\Item;
 
 abstract class AFormBlock extends Item {
     
+    abstract function loadValues($method);
+    
     public function add($item, $name) {
         $contentItem = $this->returnNewContentItem($item, $name);
         return $this->addContent($contentItem, $name);
@@ -36,4 +38,28 @@ abstract class AFormBlock extends Item {
         return $contentItem;
     }
     
+    protected function loadValuesGET() {
+        foreach($_GET as $name => $value) {
+            $this->fillUpValue($name, $value, 'GET');
+        }
+        return $this;
+    }
+    
+    protected function loadValuesPOST() {
+        foreach($_POST as $name => $value) {
+            $this->fillUpValue($name, $value, 'POST');
+        }
+    }
+    
+    protected function fillUpValue($name, $value, $method) {
+        foreach($this->getContent() as $contentItem) {
+            if(is_a($contentItem, 'Crex\Web\Form\AFormBlock')) {
+                $contentItem->loadValues($method);
+            }
+            else if($contentItem->attributes['name'] == $name) {
+                $contentItem->setValue('value', $value);
+            }
+        }
+        return $this;
+    }
 }

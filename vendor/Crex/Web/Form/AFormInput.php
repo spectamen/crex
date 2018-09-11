@@ -6,6 +6,8 @@ use Crex\Web\Item;
 
 abstract class AFormInput extends Item {
     
+    abstract function setValue($value);
+    
     public function setRequired() {
         $this->addAttribute('required');
         return $this;

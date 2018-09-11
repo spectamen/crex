@@ -41,7 +41,7 @@ class Porzana extends Service {
         return $string;
     }
     
-    private static function replaceShortcuts($string, $parameters = array(), $PHP = 0) {
+    public static function replaceShortcuts($string, $parameters = array(), $PHP = 0) {
         $matches = array();
         $keywords = array();
         preg_match_all('~\{[^{}]*\}~', $string, $matches);

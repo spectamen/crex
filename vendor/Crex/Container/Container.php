@@ -11,13 +11,23 @@ class Container {
     private $factories = array();
     private $templates = array();
     private $parameters = array();
+    private $parsedURL = array();
+    private $controller;
     
     public function __construct() {
-        $this->parameters = $this->getParsedAddress();
+        $this->parsedURL = $this->getParsedAddress();
     }
     
     public function getUID() {
         return spl_object_hash($this);
+    }
+    
+    public function getController() {
+        return $this->controller;
+    }
+    
+    public function getParsedURL() {
+        return $this->parsedURL;
     }
     
     public function getParameters() {
@@ -26,6 +36,11 @@ class Container {
     
     public function getTemplates() {
         return $this->templates;
+    }
+    
+    public function setController($controller) {
+        $this->controller = $controller;
+        return $this;
     }
     
     public function setParameter($name, $value) {

@@ -7,8 +7,6 @@ use Nette\Neon\Neon;
 
 class Router extends CrexObject {
     
-    private $controller;
-    
     public function __construct($container, array $parameters = NULL) {
 	parent::__construct($container, $parameters);
 	$this->loadController();
@@ -16,32 +14,32 @@ class Router extends CrexObject {
     }
     
     public function birth() {
-        $this->controller->birth();
+        $this->container->getController()->birth();
         return $this;
     }
     
     public function life() {
-        $this->controller->life();
-        $this->controller->registerParameters();
+        $this->container->getController()->life();
+        $this->container->getController()->registerParameters();
         return $this;
     }
     
     public function death() {
-        $this->controller->death();
+        $this->container->getController()->death();
     }
         
     public function getParameters() {
-        return $this->controller->getParameters();
+        return $this->container->getController()->getParameters();
     }
     
     public function loadControllerTemplatePath() {
-        return $this->controller->loadTemplatePath();
+        return $this->container->getController()->loadTemplatePath();
     }
     
     private function loadController() {
 	$routes = Neon::decode(file_get_contents('../app/routes.neon'));
-        if(isset($this->container->getParameters()[0])) {
-	    $controller = $this->container->getParameters()[0];
+        if(isset($this->container->getParsedURL()[0])) {
+	    $controller = $this->container->getParsedURL()[0];
 	} else {
 	    $controller = 'default';
 	}	
@@ -58,7 +56,7 @@ class Router extends CrexObject {
                 $controllerPath = $routes['error'];
             }
 	}
-        $this->controller = new $controllerPath($this->container);
+        $this->container->setController(new $controllerPath($this->container));
     }
 
 }
