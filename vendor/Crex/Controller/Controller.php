@@ -85,4 +85,10 @@ abstract class Controller extends CrexObject {
         }
     }
     
+    public function newForm($formName) {
+	$form = $this->container->getFactory('FormFactory')->create($formName);
+	$this->setParameter($formName, $form);
+	return $this->getParameters()[$formName];
+    }
+    
 }

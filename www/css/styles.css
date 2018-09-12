@@ -18,3 +18,30 @@ div#content{margin: 0 150px}
 div#navigation{float:left;width:150px;margin-left:-700px}
 div#extra{float:left;width:150px;margin-left:-150px}
 div#footer{clear:left;width:100%}
+
+.crex-fieldset {
+    float: left;
+    height: 100%;
+}
+
+.crex-fieldset fieldset {
+    height: 100%;
+}
+
+.crex-label {
+    padding-top: 5px;
+    padding-right: 5px;
+    float: left;
+    text-align: right;
+    width: 100px;
+    height: 20px;
+}
+
+.crex-input {
+    float: right;
+    height: 25px;
+}
+
+.crex-textarea textarea{
+    height: 400px;
+}

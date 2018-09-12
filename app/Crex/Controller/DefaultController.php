@@ -7,54 +7,54 @@ use \Crex\Controller\Controller;
 class DefaultController extends Controller {
         
     public function life() {
-        $this->createForm();
-        $this->createAnotherForm();
+        $form = $this->newForm('ExampleForm')
+		->setMethod('GET');
+	
+	$fieldset = $form->add('fieldset', 'PersonalInformation')
+		->setLegend('Personal Information');
+	
+	$fieldset->add('text', 'FirstName')
+		->setLabel('First name:')
+		->setRequired();
+	
+	$fieldset->add('text', 'MiddleName')
+		->setLabel('Middle name:');
+	
+	$fieldset->add('text', 'LastName')
+		->setLabel('Last name:')
+		->setRequired();
+	
+	$fieldset->add('email', 'Email')
+		->setLabel('E-mail:')
+		->setRequired()
+		->setValue('@');
+	$fieldset->add('submit', 'Submit')
+		->setValue('Send');
+	
+	$fieldset = $form->add('fieldset', 'CodeReview')
+		->setLegend('Code review');
+	$fieldset->add('textarea', 'Code')
+		->addAttribute('cols', 60)
+		->addAttribute('rows', 15)
+		->setValue("\$form = \$this->newForm('ExampleForm')
+    ->setMethod('GET');\n
+\$fieldset = \$form->add('fieldset', 'PersonalInformation')
+    ->setLegend('Personal Information');\n
+\$fieldset->add('text', 'FirstName')
+    ->setLabel('First name:')
+    ->setRequired();\n
+\$fieldset->add('text', 'MiddleName')
+    ->setLabel('Middle name:');\n
+\$fieldset->add('text', 'LastName')
+    ->setLabel('Last name:')
+    ->setRequired();\n
+\$fieldset->add('email', 'Email')
+    ->setLabel('E-mail:')
+    ->setRequired()
+    ->setValue('@');\n
+\$fieldset->add('submit', 'Submit')
+    ->setValue('Send');");
+	
     }
-    
-    private function createForm() {
-        $form = $this->container->getFactory('FormFactory')->create()
-                ->setMethod('get')
-                ->setAction('{#ADDRESS}');
-        $form->add('fieldset', 'FA')
-                ->setLegend('Fieldset A');
-        $form->getContentItem('FA')
-                ->add('text', 'FirstTextbox')
-                    ->setLabel('1. textbox')
-                    ->setValue('First textbox has value.');
-        $form->getContentItem('FA')
-                ->add('text', 'SecondTextbox')
-                    ->setLabel('2. textbox');
-        $fa = $form->getContentItem('FA');
-        $fa->add('password', 'Password')->setLabel('Password');
-        $fa->add('password', 'PasswordAgain')->setLabel('Password again');
-        $fa->add('checkbox', 'Checkbox')
-                ->setLabel('This is checkbox')
-                ->addAttribute('checked');
-        $this->setParameter('form', $form);
-    }
-    
-    public function createAnotherForm() {
-        $form = $this->container->getFactory('FormFactory')->create()
-                ->setMethod('get')
-                ->setAction('index.php')
-                ->setTarget('_blank');
         
-        $selectionBox = $this->container->getFactory('FormSelectFactory')->create('SelectionBox', 2);
-        $selectionBox
-                ->setLabel('Two row-size select')
-                ->addOption('1', 'First')
-                ->addOption('2', 'Second')
-                ->addOption('3', 'Third', 1); //selected
-        $form->addContent($selectionBox, 'selectionBox');
-        $form->add('select', 'Color')
-                ->setLabel('One row-size select (required)')
-                ->addOption('1', 'Red')
-                ->addOption('2', 'Blue')
-                ->addOption('3', 'Green')
-                ->addOption('4', 'White')
-                ->setSize(1)
-                ->setRequired();
-        $this->setParameter('anotherForm', $form);
-    }
-    
 }

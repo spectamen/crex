@@ -18,18 +18,31 @@ abstract class AFormBlock extends Item {
             case 'fieldset':
                 $contentItem = $this->container->getFactory('FormFieldsetFactory')->create();
                 break;
-            case 'text';
-                $contentItem = $this->container->getFactory('FormInputFactory')->create($type, $name);
-                break;
+            case 'text':
             case 'password':
-                $contentItem = $this->container->getFactory('FormInputFactory')->create($type, $name);
-                break;
             case 'checkbox':
+	    //HTML5
+	    case 'color':
+	    case 'date':
+	    case 'datetime-local':
+	    case 'email':
+	    case 'month':
+	    case 'number':
+	    case 'range':
+	    case 'search':
+	    case 'tel':
+	    case 'time':
+	    case 'url':
+	    case 'week':
+	    case 'submit':
                 $contentItem = $this->container->getFactory('FormInputFactory')->create($type, $name);
                 break;
             case 'select':
                 $contentItem = $this->container->getFactory('FormSelectFactory')->create($name);
                 break;
+	    case 'textarea':
+		$contentItem = $this->container->getFactory('FormTextareaFactory')->create($name);
+		break;
             default:
                 $params['name'] = $type;
                 $contentItem = $this->container->getFactory('WebItemFactory')->create($params);

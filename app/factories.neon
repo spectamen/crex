@@ -15,3 +15,4 @@ FormFactory: Crex\Web\Form\FormFactory
 FormFieldsetFactory: Crex\Web\Form\Fieldset\FieldsetFactory
 FormInputFactory: Crex\Web\Form\Input\InputFactory
 FormSelectFactory: Crex\Web\Form\Select\SelectFactory
+FormTextareaFactory: Crex\Web\Form\Textarea\TextareaFactory

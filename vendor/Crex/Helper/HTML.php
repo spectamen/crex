@@ -71,6 +71,10 @@ abstract class HTML {
         'spellcheck',
         'translate'
     );
+    
+    private static $multipleclassTags = array(
+	'input'
+    );
 
     public static function toHTML($object) {
         $string = '';
@@ -91,27 +95,28 @@ abstract class HTML {
         
         foreach($object->content as $content) {
             if($content['pre'] == 1) {
-                $string = $string . "\n" .
-                    $content['content'];
+                $string = $string . $content['content'] . "\n";
             }            
         }
         
         if(!in_array(strtolower($object->name), self::$nonDivedTags)) {
-            $string = $string . '<div class="' . strtolower($object->name) . '">' . "\n";
+            $string = $string . '<div class="crex-' . strtolower($object->name);
+	    if(in_array(strtolower($object->name), self::$multipleclassTags) and isset($object->attributes['type'])) {
+		$string = $string . ' crex-' . $object->name . '-' . $object->attributes['type'];
+	    }
+	    $string = $string .  '">' . "\n";
         }        
         
-        $string = $string . '<' . strtolower($object->name) . self::parseAttributes($object) . '>';
+        $string = $string . '<' . strtolower($object->name) . self::parseAttributes($object) . '>' . "\n";
         
         foreach($object->content as $content) {
             if($content['pre'] == 0) {
-                $string = $string . "\n" .
-                    $content['content'];
+                $string = $string . $content['content'] . "\n";
             }            
         }
         
         if ($isPair == 1) {
-            $string = $string . "\n" .
-                    '</' . strtolower($object->name) . '>';
+            $string = $string . '</' . strtolower($object->name) . '>' . "\n";
         }
         
         if($objectContentCount > 0 and $isPair == 0) {
@@ -122,7 +127,8 @@ abstract class HTML {
             $string = $string . '</div>' . "\n";
         }        
         $string = Porzana::replaceShortcuts($string, NULL, 1);
-        return Porzana::returnSortedHtml($string);
+	//$string = Porzana::returnSortedHtml($string);
+        return $string;
     }
 
     private static function parseAttributes($object) {
